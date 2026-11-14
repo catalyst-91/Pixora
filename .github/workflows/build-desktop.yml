@@ -13,7 +13,7 @@ jobs:
       matrix:
         include:
           - { os: windows-latest, target: --win }
-          - { os: macos-14, target: --mac }
+          - { os: macos-15, target: --mac }
           - { os: ubuntu-latest, target: --linux }
     runs-on: ${{ matrix.os }}
     steps:
@@ -23,6 +23,9 @@ jobs:
         run: python3 -c "import zipfile; zipfile.ZipFile('PIXORA-src.zip').extractall('.')" || python -c "import zipfile; zipfile.ZipFile('PIXORA-src.zip').extractall('.')"
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - name: Prepare icons
+        shell: bash
+        run: node -e "const fs=require('fs'),f='desktop/package.json',p=JSON.parse(fs.readFileSync(f));(p.build.fileAssociations||[]).forEach(a=>delete a.icon);fs.writeFileSync(f,JSON.stringify(p,null,2))"
       - name: Build
         working-directory: desktop
         shell: bash
