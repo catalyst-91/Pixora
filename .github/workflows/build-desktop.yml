@@ -34,7 +34,12 @@ jobs:
         run: |
           npm install --no-audit --no-fund
           npm run copy-app
-          npx electron-builder ${{ matrix.target }} --publish never
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            npx electron-builder --mac --arm64 --publish never
+            npx electron-builder --mac --x64 --publish never
+          else
+            npx electron-builder ${{ matrix.target }} --publish never
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: PIXORA-${{ runner.os }}
