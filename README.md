@@ -6,12 +6,12 @@
 
 **by Booth Productions**
 
-![Version](https://img.shields.io/badge/version-1.2.0-ff2d95)
+![Version](https://img.shields.io/badge/version-1.3.0-ff2d95)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-6c5ce7)
 ![Build](https://github.com/catalyst-91/Pixora/actions/workflows/build-desktop.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
-[**Download**](https://github.com/catalyst-91/Pixora/releases/latest) · [Features](#features) · [Getting started](#getting-started) · [Show control](#show-control--integration) · [Building](#building-from-source)
+[**Download**](https://github.com/catalyst-91/Pixora/releases/latest) · [Features](#features) · [Recording](#local-recording) · [Getting started](#getting-started) · [Show control](#show-control--integration) · [Building](#building-from-source)
 
 </div>
 
@@ -31,10 +31,10 @@ It runs as a native desktop app on Windows, macOS and Linux. All decoding, compo
 
 | Platform | Installer |
 |---|---|
-| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.2.0.exe` (installer) or `PIXORA-1.2.0-portable.exe` |
-| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.2.0-mac-arm64.dmg` |
-| **macOS** Intel | `PIXORA-1.2.0-mac-x64.dmg` |
-| **Linux** (x64) | `PIXORA-1.2.0-linux-x86_64.AppImage` |
+| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.3.0.exe` (installer) or `PIXORA-1.3.0-portable.exe` |
+| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.3.0-mac-arm64.dmg` |
+| **macOS** Intel | `PIXORA-1.3.0-mac-x64.dmg` |
+| **Linux** (x64) | `PIXORA-1.3.0-linux-x86_64.AppImage` |
 
 Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixora/releases/latest)**.
 
@@ -83,13 +83,40 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - Multi-machine **frame sync**, plus a backup / failover server
 - A show-day checklist and an LED test sequence
 
+### Recording
+- Record the output exactly as the audience sees it, **with audio**, or record **audio only**, all on your own computer
+- Audio from playing clips, a live input such as a FOH feed, or both
+- Chosen folder (any drive), file name, auto-stop timer, and optional raw master
+- Start and stop from the panel, `⌘⇧R` / `Ctrl+Shift+R`, OSC or HTTP
+
 ### Operations
 - **Users and roles** (admin / operator / client / viewer) with sign-in
 - Remote access through a Cloudflare tunnel
 - Multi-operator presence, follow mode and layer locks
 - Scheduler, sponsor rotation and **PDF show reports** (proof of play, incidents, changes)
-- Output recording, audio-reactive scenes with auto BPM
+- Audio-reactive scenes with auto BPM
 - In-app updates, verified with SHA-256 and backed up automatically
+
+---
+
+## Local recording
+
+Go to **Output ▸ Local recording**, pick a format and an audio source, then press **● Record**. The capture is written to disk as it records, and ffmpeg (included in the desktop app) finishes the file on the same computer.
+
+| Format | Video | Audio | Best for |
+|---|---|---|---|
+| **MP4** | H.264 | AAC | Plays everywhere: client previews, socials, phones |
+| **MOV · ProRes** | ProRes 422 HQ | PCM 24-bit | Editing in Premiere, Final Cut, Resolve |
+| **MOV · HAP** | HAP | PCM 16-bit | Media-server playback (PIXORA, Resolume) |
+| **MKV** | H.264 | FLAC (lossless) | Archive |
+| **WebM** | VP9 | Opus | Web, small files |
+| **WAV** | – | PCM 24-bit 48 kHz | Sound only: lossless |
+| **MP3** | – | 320 kb/s | Sound only: small files |
+| **FLAC** | – | Lossless | Sound only: about half the size of WAV |
+
+**Audio sources:** clip audio · clip audio + audio input · audio input only · none. Sound-only recordings are captured losslessly.
+
+**Remote control:** OSC `/pixora/rec 1|0`, `/pixora/rec/start <format>`, `/pixora/rec/stop` · HTTP `/api/rec/start?format=wav&audio=input`, `/api/rec/stop`, `/api/rec/status`.
 
 ---
 
@@ -171,6 +198,7 @@ The installers are written to `desktop/dist/`. See `BUILD-DESKTOP-APP.md` for co
 ```
 server.js           Engine server (HTTP, WebSocket, OSC, Art-Net/sACN, CITP, ffmpeg jobs)
 server-pro3.js      v1.2 modules (roles, updates, reports, preflight, sync)
+server-rec.js       Local recording (formats, ffmpeg finishing, API)
 public/             Controller, output renderer, phone remote, manual
 desktop/            Electron desktop app (menus, windows, displays, NDI)
 companion-module/   Bitfocus Companion module
