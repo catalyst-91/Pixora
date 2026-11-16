@@ -6,7 +6,7 @@
 
 **by Booth Productions**
 
-![Version](https://img.shields.io/badge/version-1.3.0-ff2d95)
+![Version](https://img.shields.io/badge/version-1.4.0-ff2d95)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-6c5ce7)
 ![Build](https://github.com/catalyst-91/Pixora/actions/workflows/build-desktop.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
@@ -31,10 +31,10 @@ It runs as a native desktop app on Windows, macOS and Linux. All decoding, compo
 
 | Platform | Installer |
 |---|---|
-| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.3.0.exe` (installer) or `PIXORA-1.3.0-portable.exe` |
-| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.3.0-mac-arm64.dmg` |
-| **macOS** Intel | `PIXORA-1.3.0-mac-x64.dmg` |
-| **Linux** (x64) | `PIXORA-1.3.0-linux-x86_64.AppImage` |
+| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.4.0.exe` (installer) or `PIXORA-1.4.0-portable.exe` |
+| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.4.0-mac-arm64.dmg` |
+| **macOS** Intel | `PIXORA-1.4.0-mac-x64.dmg` |
+| **Linux** (x64) | `PIXORA-1.4.0-linux-x86_64.AppImage` |
 
 Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixora/releases/latest)**.
 
@@ -65,6 +65,12 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - Projection mapping with a **Stage 3D** preview
 - **MVR import**, so video screens from grandMA3 / Vectorworks / Capture appear in place
 - LED content templates exported as PNG / SVG / PSD / spec sheet
+
+### NDI®
+- **NDI® built in**: every output can be an NDI source, with clip audio, live receiver count and custom names
+- **NDI-only outputs**: rendered off-screen, so no display is needed. Good for feeding vision mixers, OBS, vMix or recorders
+- **NDI® in**: sources on the network become clips, with effects and mapping
+- Extra IPs and groups for networks where discovery is blocked; Spout/Syphon through NDI's free bridge tools
 
 ### Show control and integration
 - **DMX** over Art-Net and sACN (in and out), plus pixel mapping
@@ -144,6 +150,7 @@ Open `http://<computer-ip>:8080/remote` on any phone or tablet on the same netwo
 | Art-Net DMX and timecode | in / out | UDP **6454** |
 | sACN (E1.31) | in / out | UDP **5568** |
 | CITP / MSEX | out | UDP **4809** + one TCP port |
+| NDI® | in / out | TCP **5960** and up, mDNS UDP **5353** |
 
 Allow these ports through your firewall if consoles or controllers are on another machine.
 
@@ -200,7 +207,8 @@ server.js           Engine server (HTTP, WebSocket, OSC, Art-Net/sACN, CITP, ffm
 server-pro3.js      v1.2 modules (roles, updates, reports, preflight, sync)
 server-rec.js       Local recording (formats, ffmpeg finishing, API)
 public/             Controller, output renderer, phone remote, manual
-desktop/            Electron desktop app (menus, windows, displays, NDI)
+desktop/            Electron desktop app (menus, windows, displays)
+desktop/native/ndi/ PIXORA's NDI® module (C, Node-API); the NDI runtime is added at build time
 companion-module/   Bitfocus Companion module
 installers/         Installer build scripts and update packager
 tests/              Integration test harnesses
@@ -218,6 +226,16 @@ tests/              Integration test harnesses
 | **GPU** | WebGL 2 capable | Dedicated GPU or Apple Silicon |
 | **RAM** | 8 GB | 16 GB+ |
 | **Network** | Optional | Gigabit Ethernet for consoles and multi-machine sync |
+
+---
+
+## Licences
+
+PIXORA is © Booth Productions; see the EULA shown by the installer (`desktop/build/EULA.txt`).
+
+This product uses **NDI®** technology. NDI® is a registered trademark of Vizrt NDI AB. More information: [ndi.video](https://ndi.video/). The NDI runtime library is © Vizrt NDI AB. It is downloaded from NDI during the build and is never stored in this repository. The NDI header files in `desktop/native/ndi/include` are MIT-licensed by Vizrt NDI AB.
+
+Includes FFmpeg (GPL), run as a separate program, and Electron/Chromium (open-source licences).
 
 ---
 
