@@ -6,7 +6,7 @@
 
 **by Booth Productions**
 
-![Version](https://img.shields.io/badge/version-1.4.1-ff2d95)
+![Version](https://img.shields.io/badge/version-1.4.2-ff2d95)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-6c5ce7)
 ![Build](https://github.com/catalyst-91/Pixora/actions/workflows/build-desktop.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
@@ -31,17 +31,17 @@ It runs as a native desktop app on Windows, macOS and Linux. All decoding, compo
 
 | Platform | Installer |
 |---|---|
-| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.4.1.exe` (installer) or `PIXORA-1.4.1-portable.exe` |
-| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.4.1-mac-arm64.dmg` |
-| **macOS** Intel | `PIXORA-1.4.1-mac-x64.dmg` |
-| **Linux** (x64) | `PIXORA-1.4.1-linux-x86_64.AppImage` |
+| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.4.2.exe` (installer) or `PIXORA-1.4.2-portable.exe` |
+| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.4.2-mac-arm64.dmg` |
+| **macOS** Intel | `PIXORA-1.4.2-mac-x64.dmg` |
+| **Linux** (x64) | `PIXORA-1.4.2-linux-x86_64.AppImage` |
 
 Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixora/releases/latest)**.
 
 <details>
 <summary><b>First launch notes (unsigned builds)</b></summary>
 
-- **macOS:** right-click **PIXORA.app** ▸ **Open** ▸ **Open**. This is only needed the first time.
+- **macOS:** open the DMG and drag PIXORA to Applications, then double-click it. The first time, macOS says it can't verify the developer: click **Done**, open **System Settings ▸ Privacy & Security**, scroll down and click **Open Anyway** next to PIXORA. This is only needed once. (PIXORA is ad-hoc signed; a paid Apple Developer ID removes this step.)
 - **Windows:** if SmartScreen appears, click **More info** ▸ **Run anyway**.
 - **Linux:** `chmod +x PIXORA-*.AppImage`, then run it.
 
