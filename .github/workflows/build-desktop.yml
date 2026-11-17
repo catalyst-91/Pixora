@@ -7,7 +7,25 @@ on:
 permissions:
   contents: write
 jobs:
+  # automatic tests: nothing is built or released unless they all pass
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack PIXORA-src.zip
+        run: python3 -c "import zipfile; zipfile.ZipFile('PIXORA-src.zip').extractall('.')"
+      - uses: actions/checkout@v4
+        with: { repository: catalyst-91/QForge, path: qforge-src }
+        continue-on-error: true
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: ffmpeg
+        run: which ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      - name: Run tests
+        env: { QFORGE_DIR: qforge-src }
+        run: node tests/run-all.js
   build:
+    needs: test
     strategy:
       fail-fast: false
       matrix:
@@ -40,6 +58,10 @@ jobs:
           else
             npx electron-builder ${{ matrix.target }} --publish never
           fi
+      - name: Ableton Link test (with the Carabiner just built)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: PIXORA_CARABINER=desktop/link-dist/Carabiner node tests/link_test.js
       - uses: actions/upload-artifact@v4
         with:
           name: PIXORA-${{ runner.os }}
@@ -47,6 +69,7 @@ jobs:
             desktop/dist/*.exe
             desktop/dist/*.dmg
             desktop/dist/*.AppImage
+            desktop/link-dist/carabiner-source.tar.gz
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -57,10 +80,13 @@ jobs:
         run: python3 -c "import zipfile,json; print('version=' + json.loads(zipfile.ZipFile('PIXORA-src.zip').read('desktop/package.json'))['version'])" >> "$GITHUB_OUTPUT"
       - uses: actions/download-artifact@v4
         with: { path: out, merge-multiple: true }
+      - name: Release notes and manual from the zip
+        run: python3 -c "import zipfile; z=zipfile.ZipFile('PIXORA-src.zip'); n=z.namelist(); open('notes.md','wb').write(z.read('RELEASE-NOTES.md') if 'RELEASE-NOTES.md' in n else b''); 'PIXORA-User-Manual.pdf' in n and open('out/PIXORA-User-Manual.pdf','wb').write(z.read('PIXORA-User-Manual.pdf'))"
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.v.outputs.version }}
           name: PIXORA ${{ steps.v.outputs.version }}
+          body_path: notes.md
           files: out/*
           make_latest: true
       - name: Update the front-page README from the zip
