@@ -61,6 +61,12 @@ jobs:
       - name: Ableton Link helper was built
         shell: bash
         run: ls desktop/link-dist/Carabiner* >/dev/null 2>&1 || { echo "::error::Carabiner (Ableton Link) failed to build"; exit 1; }
+      - name: Spout / Syphon module
+        if: runner.os != 'Linux'
+        shell: bash
+        run: |
+          if ls desktop/texshare-dist/pixora_texshare-* >/dev/null 2>&1; then ls -la desktop/texshare-dist; echo "Spout/Syphon built in";
+          else echo "::warning::Spout/Syphon module was not built — this build falls back to the NDI bridge"; fi
       - name: Ableton Link test (with the Carabiner just built)
         if: runner.os == 'Linux'
         shell: bash

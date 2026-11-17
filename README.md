@@ -6,7 +6,7 @@
 
 **by Booth Productions**
 
-![Version](https://img.shields.io/badge/version-1.5.0-ff2d95)
+![Version](https://img.shields.io/badge/version-1.6.0-ff2d95)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-6c5ce7)
 ![Build](https://github.com/catalyst-91/Pixora/actions/workflows/build-desktop.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
@@ -31,10 +31,10 @@ It runs as a native desktop app on Windows, macOS and Linux. All decoding, compo
 
 | Platform | Installer |
 |---|---|
-| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.5.0.exe` (installer) or `PIXORA-1.5.0-portable.exe` |
-| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.5.0-mac-arm64.dmg` |
-| **macOS** Intel | `PIXORA-1.5.0-mac-x64.dmg` |
-| **Linux** (x64) | `PIXORA-1.5.0-linux-x86_64.AppImage` |
+| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.6.0.exe` (installer) or `PIXORA-1.6.0-portable.exe` |
+| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.6.0-mac-arm64.dmg` |
+| **macOS** Intel | `PIXORA-1.6.0-mac-x64.dmg` |
+| **Linux** (x64) | `PIXORA-1.6.0-linux-x86_64.AppImage` |
 
 Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixora/releases/latest)**.
 
@@ -56,28 +56,37 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - A media library that reads local folders **and external drives**, with thumbnails and search
 - **HAP, HAP Alpha and HAP Q** playback with GPU texture upload, plus H.264 / HEVC / VP9 / ProRes (converted by ffmpeg)
 - Generators, GLSL shaders, effects chains and a RAM frame cache for smooth reverse and scrubbing
-- Titles, a logo animator, scoreboard templates and live **data feeds** (`{{feed.key}}`)
+- Titles, a logo animator, scoreboard templates and live **data feeds** (`{{feed.key}}`) from JSON, CSV, Google Sheets, HTTP push and OSC, with a live values editor and rows that cycle or list (`{{row.Name}}`)
+- **Show templates** for weddings, conferences, sports, DJ nights, corporate events and theatre
+- **Timeline mode**: clips with fade-ins and fade-outs, plus OSC, DMX, cue and device events, locked to timecode
+- **Live captions**: speech-to-text in Chrome or Edge, or from any captioner over HTTP / OSC, with a second-language translation and TXT / SRT transcripts
 - Web pages as sources: a proxy for sites that block embedding, plus zoom, auto-scroll, transparency, refresh and URL rotation
 
 ### LED and projection mapping
 - LED panel mapping with a processor capacity check and a built-in **test-pattern generator**
 - Per-screen routing, calibration and day/night brightness
-- Projection mapping with a **Stage 3D** preview
+- **Projector tools**: corner pin, **mesh warp** (up to 16×16, smoothed) for curved screens, soft-edge blending, **black-level compensation**, feathered **masks** and alignment test patterns
+- **Camera auto-alignment**: point a webcam at the screen, and PIXORA works out every projector's corner pin, edge blends, brightness match and black level
+- **PJLink** projector control: power, input, shutter, freeze, lamp hours and error alerts
+- **Stage 3D** preview, with the **MVR** scene's trusses, set pieces and fixtures (beams included)
 - **MVR import**, so video screens from grandMA3 / Vectorworks / Capture appear in place
+- **LED processor control**: Novastar (COEX, MCTRL / VX / NovaPro, H series), Megapixel HELIOS and any DMX-controlled processor (Brompton Tessera, ROE…): brightness, blackout, freeze, presets, test patterns, inputs, plus **health monitoring** (temperatures, cards, ports)
+- **Processor setup pack**: a cabling sheet per screen, raster and port CSVs and step-by-step notes for NovaLCT, VMP, Tessera, HELIOS and Colorlight
 - LED content templates exported as PNG / SVG / PSD / spec sheet
 
 ### NDI®
 - **NDI® built in**: every output can be an NDI source, with clip audio, live receiver count and custom names
 - **NDI-only outputs**: rendered off-screen, so no display is needed. Good for feeding vision mixers, OBS, vMix or recorders
 - **NDI® in**: sources on the network become clips, with effects and mapping
-- Extra IPs and groups for networks where discovery is blocked; Spout/Syphon through NDI's free bridge tools
+- Extra IPs and groups for networks where discovery is blocked
+- **Spout** (Windows) and **Syphon** (macOS) built into the desktop app: send any output, and use other apps' senders as sources
 
 ### Live production
 - **Views** that change the layout for the job (VJ, LED, Show Operator, Production, Replay, Stream, Signage, Setup, Perform), plus custom saved views
 - A **switcher** with preview / program, CUT, AUTO and a T-bar, with fade, dip, wipe, split and stinger transitions
 - Four **overlay** channels (lower thirds, logo bugs, full-screen graphics), shared **timers** and a keyboard **shortcut** editor
 - An **audio mixer** with per-layer faders, meters and audio-follows-video
-- **Instant replay** with four angles, events, slow motion from 5% and a jog
+- **Instant replay** with four angles, events, slow motion from 5% and a jog, plus **replay export** to MP4 / WebM (any angle, slow motion included)
 - **Playlists** of videos and stills as one input, from a list, a folder or an .m3u / .pls file
 - **Remote guests**: presenters join from a browser link (WebRTC) and become sources
 - **Live streaming** to YouTube, Facebook, Twitch, Vimeo, Kick, custom RTMP and SRT at once, with Blackmagic Streaming XML import
@@ -104,7 +113,8 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - **Safe loop**: a fallback clip cuts in if a clip fails, playback stalls or the GPU resets
 - Live health cards for every output (fps, dropped frames, errors) and a diagnostics monitor
 - **Content preflight**: checks resolution, aspect, fps, codec and bitrate, with one-click optimise and relink
-- Multi-machine **frame sync**, plus a backup / failover server
+- Multi-machine **frame sync** and **render nodes**: extra machines follow the show and its clock and drive more outputs, with each node's frame rate and drift on the primary
+- **Main / backup failover**: automatic or manual takeover with takeover actions (switch the ATEM, the LED processor input…), hand-back that brings the show back to the main machine, and controllers that follow
 - A show-day checklist and an LED test sequence
 
 ### Recording
@@ -265,6 +275,10 @@ Includes FFmpeg (GPL), run as a separate program, and Electron/Chromium (open-so
 **TCNet** is an open protocol by Event Imagineering Group. PRO DJ LINK™ and Pioneer DJ are trademarks of AlphaTheta Corporation. PIXORA talks to the players directly or to Pioneer DJ's PRO DJ LINK Bridge over TCNet, and is not affiliated with or endorsed by AlphaTheta. Direct Pro DJ Link support follows the protocol research by [Deep Symmetry (beat-link)](https://github.com/Deep-Symmetry/beat-link), EPL-2.0; PIXORA's implementation is its own and contains no beat-link code.
 
 **Ableton Link** support uses [Carabiner](https://github.com/Deep-Symmetry/carabiner) by Deep Symmetry, which includes [Ableton Link](https://github.com/Ableton/link). Both are GPL-2.0. Carabiner runs as a separate program that PIXORA talks to over a local socket, and the exact source of each build is attached to every release as `carabiner-source.tar.gz`. Ableton and Link are trademarks of Ableton AG.
+
+**Spout** (Windows) uses the [Spout SDK](https://github.com/leadedge/Spout2) by Lynn Jarvis, BSD-2-Clause; **Syphon** (macOS) uses [Syphon.framework](https://github.com/Syphon/Syphon-Framework) by Tom Butterworth and Anton Marini, BSD-2-Clause. Both are built from source during the desktop build and shipped with their licence files.
+
+The Novastar controller command tables (`server-ledproc-novastar.js`) come from Bitfocus Companion's [companion-module-novastar-controller](https://github.com/bitfocus/companion-module-novastar-controller), MIT License, Copyright (c) 2020 Bitfocus AS. Novastar, HELIOS (Megapixel VR) and PJLink (JBMIA) are trademarks of their owners; PIXORA uses their published control protocols and is not affiliated with them.
 
 BirdDog, Panasonic, VISCA (Sony) and grandMA3 (MA Lighting) are trademarks of their owners and are named only to describe compatibility. The same notices appear on the desktop app's splash screen and in Help ▸ About PIXORA (`desktop/credits.js`).
 
