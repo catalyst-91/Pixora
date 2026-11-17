@@ -58,10 +58,13 @@ jobs:
           else
             npx electron-builder ${{ matrix.target }} --publish never
           fi
+      - name: Ableton Link helper was built
+        shell: bash
+        run: ls desktop/link-dist/Carabiner* >/dev/null 2>&1 || { echo "::error::Carabiner (Ableton Link) failed to build"; exit 1; }
       - name: Ableton Link test (with the Carabiner just built)
         if: runner.os == 'Linux'
         shell: bash
-        run: PIXORA_CARABINER=desktop/link-dist/Carabiner node tests/link_test.js
+        run: PIXORA_REQUIRE_CARABINER=1 PIXORA_CARABINER=desktop/link-dist/Carabiner node tests/link_test.js
       - uses: actions/upload-artifact@v4
         with:
           name: PIXORA-${{ runner.os }}
@@ -87,7 +90,7 @@ jobs:
           tag_name: v${{ steps.v.outputs.version }}
           name: PIXORA ${{ steps.v.outputs.version }}
           body_path: notes.md
-          files: out/*
+          files: out/**/*
           make_latest: true
       - name: Update the front-page README from the zip
         continue-on-error: true
