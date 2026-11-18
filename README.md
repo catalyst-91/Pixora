@@ -6,7 +6,7 @@
 
 **by Booth Productions**
 
-![Version](https://img.shields.io/badge/version-1.6.1-ff2d95)
+![Version](https://img.shields.io/badge/version-1.7.0-ff2d95)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-6c5ce7)
 ![Build](https://github.com/catalyst-91/Pixora/actions/workflows/build-desktop.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
@@ -31,10 +31,10 @@ It runs as a native desktop app on Windows, macOS and Linux. All decoding, compo
 
 | Platform | Installer |
 |---|---|
-| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.6.1.exe` (installer) or `PIXORA-1.6.1-portable.exe` |
-| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.6.1-mac-arm64.dmg` |
-| **macOS** Intel | `PIXORA-1.6.1-mac-x64.dmg` |
-| **Linux** (x64) | `PIXORA-1.6.1-linux-x86_64.AppImage` |
+| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.7.0.exe` (installer) or `PIXORA-1.7.0-portable.exe` |
+| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.7.0-mac-arm64.dmg` |
+| **macOS** Intel | `PIXORA-1.7.0-mac-x64.dmg` |
+| **Linux** (x64) | `PIXORA-1.7.0-linux-x86_64.AppImage` |
 
 Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixora/releases/latest)**.
 
@@ -56,9 +56,11 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - A media library that reads local folders **and external drives**, with thumbnails and search
 - **HAP, HAP Alpha and HAP Q** playback with GPU texture upload, plus H.264 / HEVC / VP9 / ProRes (converted by ffmpeg)
 - Generators, GLSL shaders, effects chains and a RAM frame cache for smooth reverse and scrubbing
+- **ISF shader import**: whole folders of ISF generators and effects (multi-pass, feedback, audio inputs, ISF 1.0), with each shader's inputs as controls and ISF Effect slots on clips, layers and the composition
+- **LUTs**: .cube (1D / 3D) and .3dl, as effects on clips, layers and the composition with intensity, exposure, white balance, contrast and saturation, plus a display LUT per output
 - Titles, a logo animator, scoreboard templates and live **data feeds** (`{{feed.key}}`) from JSON, CSV, Google Sheets, HTTP push and OSC, with a live values editor and rows that cycle or list (`{{row.Name}}`)
 - **Show templates** for weddings, conferences, sports, DJ nights, corporate events and theatre
-- **Timeline mode**: clips with fade-ins and fade-outs, plus OSC, DMX, cue and device events, locked to timecode
+- **Timeline mode**: clips with fade-ins and fade-outs and **audio waveforms**, plus OSC, DMX, cue and device events, locked to timecode
 - **Live captions**: speech-to-text in Chrome or Edge, or from any captioner over HTTP / OSC, with a second-language translation and TXT / SRT transcripts
 - Web pages as sources: a proxy for sites that block embedding, plus zoom, auto-scroll, transparency, refresh and URL rotation
 
@@ -73,11 +75,13 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - **LED processor control**: Novastar (COEX, MCTRL / VX / NovaPro, H series), Megapixel HELIOS and any DMX-controlled processor (Brompton Tessera, ROE…): brightness, blackout, freeze, presets, test patterns, inputs, plus **health monitoring** (temperatures, cards, ports)
 - **Processor setup pack**: a cabling sheet per screen, raster and port CSVs and step-by-step notes for NovaLCT, VMP, Tessera, HELIOS and Colorlight
 - LED content templates exported as PNG / SVG / PSD / spec sheet
+- **Dome and 360 output**: fisheye domemaster (field of view, tilt), equirectangular 360 or a perspective camera, from 360 or flat content
 
 ### NDI®
 - **NDI® built in**: every output can be an NDI source, with clip audio, live receiver count and custom names
 - **NDI-only outputs**: rendered off-screen, so no display is needed. Good for feeding vision mixers, OBS, vMix or recorders
 - **NDI® in**: sources on the network become clips, with effects and mapping
+- **Extra NDI feeds**: preview (switcher PVW), multiview, single layers and more program copies, each its own source
 - Extra IPs and groups for networks where discovery is blocked
 - **Spout** (Windows) and **Syphon** (macOS) built into the desktop app: send any output, and use other apps' senders as sources
 
@@ -92,7 +96,7 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - **Live streaming** to YouTube, Facebook, Twitch, Vimeo, Kick, custom RTMP and SRT at once, with Blackmagic Streaming XML import
 
 ### Devices and cameras
-- **Blackmagic**: ATEM switchers (incl. camera control), HyperDeck, Videohub, Web Presenter / Streaming Encoder, cameras via REST, **DeckLink / UltraStudio** in and out
+- **Blackmagic**: ATEM switchers (incl. camera control), HyperDeck, Videohub, Web Presenter / Streaming Encoder, cameras via REST, **DeckLink / UltraStudio** in and out, with **genlocked** outputs
 - **PTZ**: BirdDog, Panasonic (with Auto Tracking), VISCA-over-IP and NDI PTZ, with presets and an on-screen pad
 
 ### Show control and integration
@@ -102,7 +106,7 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - **grandMA3 package**: a USB-stick package with the GDTF, a plugin and a macro for every PIXORA action (with clip thumbnails as appearances), plus a "grandMA3 command" action the other way
 - **DMX** over Art-Net and sACN (in and out), plus pixel mapping
 - **CITP / MSEX**: consoles see clip thumbnails and live layer status
-- **Timecode**: Art-Net timecode chase and generate, a timeline with automation, and cues
+- **Timecode**: LTC (audio) and MIDI timecode in, including 29.97 drop-frame, reverse and freewheel, plus Art-Net timecode chase and generate, a timeline with automation, and cues
 - **MIDI**: ready-made mappings for APC Mini mk2 and Launchpad Mini mk3 / X / Pro mk3, with pads coloured by clip type
 - **OSC** in and out, an HTTP API, and a **Bitfocus Companion** module
 - **GDTF export**, so PIXORA can be patched as a fixture on a lighting console
@@ -120,10 +124,13 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 ### Recording
 - Record the output exactly as the audience sees it, **with audio**, or record **audio only**, all on your own computer
 - Audio from playing clips, a live input such as a FOH feed, or both
+- **ISO recording**: every camera to its own file alongside the program, started together
 - Chosen folder (any drive), file name, auto-stop timer, and optional raw master
 - Start and stop from the panel, `⌘⇧R` / `Ctrl+Shift+R`, OSC or HTTP
 
 ### Operations
+- **Show versions**: named and automatic versions, compare any two (or with the live show), bring back single items or restore
+- **Interface languages**: English, Español, Français, Deutsch, Português and 日本語, per screen, plus importable language packs
 - **Users and roles** (admin / operator / client / viewer) with sign-in
 - Remote access through a Cloudflare tunnel
 - Multi-operator presence, follow mode and layer locks
