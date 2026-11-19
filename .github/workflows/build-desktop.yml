@@ -44,6 +44,9 @@ jobs:
       - name: Prepare icons
         shell: bash
         run: node -e "const fs=require('fs'),f='desktop/package.json',p=JSON.parse(fs.readFileSync(f));(p.build.fileAssociations||[]).forEach(a=>delete a.icon);fs.writeFileSync(f,JSON.stringify(p,null,2))"
+      - name: AI background removal (MediaPipe runtime + model)
+        shell: bash
+        run: node scripts/fetch-segmenter.js
       - name: Build
         working-directory: desktop
         shell: bash
