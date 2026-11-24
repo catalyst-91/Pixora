@@ -6,7 +6,7 @@
 
 **by Booth Productions**
 
-![Version](https://img.shields.io/badge/version-1.7.1-ff2d95)
+![Version](https://img.shields.io/badge/version-1.8.0-ff2d95)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-6c5ce7)
 ![Build](https://github.com/catalyst-91/Pixora/actions/workflows/build-desktop.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
@@ -31,10 +31,10 @@ It runs as a native desktop app on Windows, macOS and Linux. All decoding, compo
 
 | Platform | Installer |
 |---|---|
-| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.7.1.exe` (installer) or `PIXORA-1.7.1-portable.exe` |
-| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.7.1-mac-arm64.dmg` |
-| **macOS** Intel | `PIXORA-1.7.1-mac-x64.dmg` |
-| **Linux** (x64) | `PIXORA-1.7.1-linux-x86_64.AppImage` |
+| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.8.0.exe` (installer) or `PIXORA-1.8.0-portable.exe` |
+| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.8.0-mac-arm64.dmg` |
+| **macOS** Intel | `PIXORA-1.8.0-mac-x64.dmg` |
+| **Linux** (x64) | `PIXORA-1.8.0-linux-x86_64.AppImage` |
 
 Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixora/releases/latest)**.
 
@@ -58,6 +58,10 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - Generators, GLSL shaders, effects chains and a RAM frame cache for smooth reverse and scrubbing
 - **ISF shader import**: whole folders of ISF generators and effects (multi-pass, feedback, audio inputs, ISF 1.0), with each shader's inputs as controls and ISF Effect slots on clips, layers and the composition
 - **LUTs**: .cube (1D / 3D) and .3dl, as effects on clips, layers and the composition with intensity, exposure, white balance, contrast and saturation, plus a display LUT per output
+- **3D scenes**: glTF / GLB models with textures and animation, orbiting or animated cameras, transparent over your layers
+- **ISF transitions** as layer and clip transitions
+- **HDR**: 16-bit float pipeline, Rec.2020 / PQ / HLG per output, 10-bit DeckLink
+- **AI background removal**: cut people out of cameras without a green screen, on the local GPU
 - Titles, a logo animator, scoreboard templates and live **data feeds** (`{{feed.key}}`) from JSON, CSV, Google Sheets, HTTP push and OSC, with a live values editor and rows that cycle or list (`{{row.Name}}`)
 - **Show templates** for weddings, conferences, sports, DJ nights, corporate events and theatre
 - **Timeline mode**: clips with fade-ins and fade-outs and **audio waveforms**, plus OSC, DMX, cue and device events, locked to timecode
@@ -95,6 +99,12 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - **Remote guests**: presenters join from a browser link (WebRTC) and become sources
 - **Live streaming** to YouTube, Facebook, Twitch, Vimeo, Kick, custom RTMP and SRT at once, with Blackmagic Streaming XML import
 
+### Streams, audio and virtual production
+
+- **Stream inputs**: SRT, RTMP (from OBS), HLS, RTSP, played at the live edge
+- **Audio outputs per layer / clip**: device and channel pair (Dante, multi-channel interfaces), gain, delay, meters
+- **Virtual production**: FreeD camera tracking and off-axis 3D rendering for LED walls
+
 ### Devices and cameras
 - **Blackmagic**: ATEM switchers (incl. camera control), HyperDeck, Videohub, Web Presenter / Streaming Encoder, cameras via REST, **DeckLink / UltraStudio** in and out, with **genlocked** outputs
 - **PTZ**: BirdDog, Panasonic (with Auto Tracking), VISCA-over-IP and NDI PTZ, with presets and an on-screen pad
@@ -130,7 +140,10 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 
 ### Operations
 - **Show versions**: named and automatic versions, compare any two (or with the live show), bring back single items or restore
-- **Interface languages**: English, Español, Français, Deutsch, Português and 日本語, per screen, plus importable language packs
+- **Interface languages**: English, Español, Français, Deutsch, Italiano, Português, 日本語, 中文 and 한국어, per screen, plus importable language packs
+- **Kiosk and digital signage**: day-parts that keep the right content on air (even after a power cut), locked controls, boot straight into the outputs
+- **Audience interaction**: polls, Q&A and a social wall from phones via a QR code, with moderation
+- **Media sync**: backups and render nodes copy the primary's media by themselves
 - **Users and roles** (admin / operator / client / viewer) with sign-in
 - Remote access through a Cloudflare tunnel
 - Multi-operator presence, follow mode and layer locks
