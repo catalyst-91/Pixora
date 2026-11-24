@@ -6,7 +6,7 @@
 
 **by Booth Productions**
 
-![Version](https://img.shields.io/badge/version-1.8.0-ff2d95)
+![Version](https://img.shields.io/badge/version-1.9.0-ff2d95)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-6c5ce7)
 ![Build](https://github.com/catalyst-91/Pixora/actions/workflows/build-desktop.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
@@ -31,10 +31,10 @@ It runs as a native desktop app on Windows, macOS and Linux. All decoding, compo
 
 | Platform | Installer |
 |---|---|
-| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.8.0.exe` (installer) or `PIXORA-1.8.0-portable.exe` |
-| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.8.0-mac-arm64.dmg` |
-| **macOS** Intel | `PIXORA-1.8.0-mac-x64.dmg` |
-| **Linux** (x64) | `PIXORA-1.8.0-linux-x86_64.AppImage` |
+| **Windows 10 / 11** (x64) | `PIXORA-Setup-1.9.0.exe` (installer) or `PIXORA-1.9.0-portable.exe` |
+| **macOS** Apple Silicon (M1–M4) | `PIXORA-1.9.0-mac-arm64.dmg` |
+| **macOS** Intel | `PIXORA-1.9.0-mac-x64.dmg` |
+| **Linux** (x64) | `PIXORA-1.9.0-linux-x86_64.AppImage` |
 
 Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixora/releases/latest)**.
 
@@ -58,6 +58,10 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 - Generators, GLSL shaders, effects chains and a RAM frame cache for smooth reverse and scrubbing
 - **ISF shader import**: whole folders of ISF generators and effects (multi-pass, feedback, audio inputs, ISF 1.0), with each shader's inputs as controls and ISF Effect slots on clips, layers and the composition
 - **LUTs**: .cube (1D / 3D) and .3dl, as effects on clips, layers and the composition with intensity, exposure, white balance, contrast and saturation, plus a display LUT per output
+- **Projection onto 3D objects**: outputs as projectors aimed at a 3D model, automatic blending, coverage map
+- **Colour management**: camera log (LogC, S-Log3, V-Log, ACEScct) and HDR footage, ACES tone mapping
+- **2.5D depth video**: parallax from RGB-D clips
+- **Expressions and macros**: maths on any parameter, action lists with webhooks
 - **3D scenes**: glTF / GLB models with textures and animation, orbiting or animated cameras, transparent over your layers
 - **ISF transitions** as layer and clip transitions
 - **HDR**: 16-bit float pipeline, Rec.2020 / PQ / HLG per output, 10-bit DeckLink
@@ -103,7 +107,8 @@ Get the latest installers from **[Releases](https://github.com/catalyst-91/Pixor
 
 - **Stream inputs**: SRT, RTMP (from OBS), HLS, RTSP, played at the live edge
 - **Audio outputs per layer / clip**: device and channel pair (Dante, multi-channel interfaces), gain, delay, meters
-- **Virtual production**: FreeD camera tracking and off-axis 3D rendering for LED walls
+- **Virtual production**: FreeD camera tracking, lens table, inner frustum and off-axis 3D rendering for LED walls
+- **PosiStageNet**: follow performers and moving scenery with tracker positions
 
 ### Devices and cameras
 - **Blackmagic**: ATEM switchers (incl. camera control), HyperDeck, Videohub, Web Presenter / Streaming Encoder, cameras via REST, **DeckLink / UltraStudio** in and out, with **genlocked** outputs
